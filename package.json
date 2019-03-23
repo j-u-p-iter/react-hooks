@@ -1,12 +1,12 @@
 {
-  "name": "@j-u-p-iter/react-hooks",
-  "version": "0.0.1",
+  "name": "@j.u.p.iter/react-hooks",
+  "version": "0.0.3",
   "description": "React hooks utils",
   "keywords": [
     "react",
     "hooks",
     "react-hooks"
-  ], 
+  ],
   "main": "dist/lib/react-hooks.cjs.js",
   "module": "dist/lib/react-hooks.esm.js",
   "umd:main": "dist/lib/react-hooks.umd.min.js",
