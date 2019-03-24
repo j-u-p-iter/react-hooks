@@ -27,9 +27,11 @@
   "devDependencies": {
     "@j.u.p.iter/jupiter-scripts": "^1.6.0",
     "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.3",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-testing-library": "^5.4.2"
+    "react-testing-library": "^6.0.2",
+    "wait-for-expect": "^1.1.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0"
