@@ -26,6 +26,7 @@ describe("useDebounce", () => {
     };
   });
 
+  // need to test case, when we click only one time
   it("works properly", async () => {
     const handler = jest.fn();
 
