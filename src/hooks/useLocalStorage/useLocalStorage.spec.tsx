@@ -27,18 +27,12 @@ describe("useLocalStorage", () => {
     renderComponent = ({ valueToSave }: any = {}) =>
       render(
         <TestComponent>
-          {({ storedValue, storeValue }: any) => {
-            console.log("storedValue: ", storedValue);
-            return (
-              <>
-                <span
-                  data-testid={storedValueTestId}
-                  data-stored={storedValue}
-                />
-                <button onClick={() => storeValue(valueToSave)}>Save</button>
-              </>
-            );
-          }}
+          {({ storedValue, storeValue }: any) => (
+            <>
+              <span data-testid={storedValueTestId} data-stored={storedValue} />
+              <button onClick={() => storeValue(valueToSave)}>Save</button>
+            </>
+          )}
         </TestComponent>
       );
   });
