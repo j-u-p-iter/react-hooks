@@ -1,18 +1,40 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-export const useListDataManager = () => {
-  const [dataList, setListData] = useState<any[]>([]);
+type RequiredParams = {
+  id: number;
+};
 
-  const addItem = (item: any) => {
+type Item<ItemData> = ItemData & RequiredParams;
+
+export const useListDataManager = <ItemData>(defaultDataList: Item<ItemData>[] = []) => {
+  const [dataList, setListData] = useState<Item<ItemData>[]>(defaultDataList);
+
+  const addItem = (item: Item<ItemData>) => {
     setListData(state => [...state, item]);
   };
 
-  const removeItem = (itemToDeleteId: any) =>
+  const updateItem = (dataToUpdate: Partial<Item<ItemData>>, itemToUpdateId: Item<ItemData>['id']) => {
+    return setListData(
+      dataList.map(itemData => {
+        const { id: itemId } = itemData;
+
+        return itemId === itemToUpdateId
+          ? {
+              ...itemData,
+              ...dataToUpdate,
+            }
+          : itemData;
+      })
+    );
+  };
+
+  const removeItem = (itemToDeleteId: Item<ItemData>['id']) =>
     setListData(dataList.filter(({ id: itemId }) => itemId !== itemToDeleteId));
 
   return {
     dataList,
     addItem,
-    removeItem
+    updateItem,
+    removeItem,
   };
 };
