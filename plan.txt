@@ -1,0 +1,6 @@
+Before you start implementing hook, you should research several
+similar repos to get inspiration from another libs for better 
+experience and the best end result.
+
+1. useAsync
+2. useAxios

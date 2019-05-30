@@ -5,30 +5,31 @@ type EventListener = (event: Event) => void;
 export const useEventListener = (
   eventName: string,
   eventListener: EventListener
-): ((element: Element | null) => void) => {
-  const [element, setElement] = useState({
-    addEventListener: () => {},
-    removeEventListener: () => {}
-  } as { addEventListener: any; removeEventListener: any });
+): ((element: any) => void) => {
+  const [element, setElement] = useState(null);
 
   const setRef = (node: any): void => {
     setElement(node);
   };
 
-  const eventListenerStore: ReturnType<typeof useRef> = useRef(() => {});
+  const eventListenerStore: ReturnType<typeof useRef> = useRef();
 
   useEffect(() => {
     eventListenerStore.current = eventListener;
   }, [eventListener]);
 
   useEffect(() => {
-    element.addEventListener(
+    if (!element) {
+      return;
+    }
+
+    (element! as Element).addEventListener(
       eventName,
       eventListenerStore.current as EventListener
     );
 
     return () => {
-      element.removeEventListener(
+      (element! as Element).removeEventListener(
         eventName,
         eventListenerStore.current as EventListener
       );
