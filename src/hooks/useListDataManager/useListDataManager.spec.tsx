@@ -123,14 +123,15 @@ describe("useListDataManager", () => {
 
   describe("with predefined array as data list", () => {
     it("works properly", () => {
-      const { getByText, queryByTestId } = renderComponent([
+      const predefinedDataList = [
         { id: 1, title: "Predefined first item" },
         { id: 2, title: "Predefined second item" }
-      ]);
+      ];
+      const { getByText, queryByTestId } = renderComponent(predefinedDataList);
 
       expect((queryByTestId(listTestId) as Element).childElementCount).toBe(2);
-      expect(getByText("Predefined first item")).toBeDefined();
-      expect(getByText("Predefined second item")).toBeDefined();
+      expect(getByText(predefinedDataList[0].title)).toBeDefined();
+      expect(getByText(predefinedDataList[1].title)).toBeDefined();
     });
   });
 });
