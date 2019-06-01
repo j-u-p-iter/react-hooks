@@ -5,7 +5,7 @@ import { useListDataManager } from ".";
 
 type RenderComponent = (dataList?: any[]) => ReturnType<typeof render>;
 
-type Props = {
+interface Props {
   dataList?: any[];
 }
 
@@ -18,7 +18,9 @@ describe("useListDataManager", () => {
     listTestId = "list-test-id";
     listItemTestId = "list-item-test-id";
 
-    const TestComponent: React.FC<Props> = ({ dataList: dataListFromProps }) => {
+    const TestComponent: React.FC<Props> = ({
+      dataList: dataListFromProps
+    }) => {
       const { dataList, addItem, removeItem, updateItem } = useListDataManager<{
         id: number;
         title: string;
@@ -64,10 +66,10 @@ describe("useListDataManager", () => {
       );
     };
 
-    renderComponent = (dataList) => render(<TestComponent dataList={dataList} />);
+    renderComponent = dataList => render(<TestComponent dataList={dataList} />);
   });
 
-  describe('with default empty array as data list', () => {
+  describe("with default empty array as data list", () => {
     it("works properly", async () => {
       const { getByText, queryByTestId } = renderComponent();
 
@@ -119,13 +121,16 @@ describe("useListDataManager", () => {
     });
   });
 
-  describe('with predefined array as data list', () => {
-    it('works properly', () => {
-      const { getByText, queryByTestId } = renderComponent([{ id: 1, title: 'Predefined first item' }, { id: 2, title: 'Predefined second item' }]);
+  describe("with predefined array as data list", () => {
+    it("works properly", () => {
+      const { getByText, queryByTestId } = renderComponent([
+        { id: 1, title: "Predefined first item" },
+        { id: 2, title: "Predefined second item" }
+      ]);
 
       expect((queryByTestId(listTestId) as Element).childElementCount).toBe(2);
-      expect(getByText('Predefined first item')).toBeDefined();
-      expect(getByText('Predefined second item')).toBeDefined();
+      expect(getByText("Predefined first item")).toBeDefined();
+      expect(getByText("Predefined second item")).toBeDefined();
     });
   });
 });
