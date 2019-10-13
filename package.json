@@ -10,11 +10,9 @@
   "main": "dist/lib/react-hooks.cjs.js",
   "module": "dist/lib/react-hooks.esm.js",
   "umd:main": "dist/lib/react-hooks.umd.min.js",
+  "typings": "dist/types",
   "repository": "git@github.com:j-u-p-iter/react-hooks.git",
   "author": "Leontyev Kirill (j.u.p.iter) <pn79122821224@gmail.com> (http://j-u-p-iter.pro/)",
-  "files": [
-    "dist"
-  ],
   "license": "MIT",
   "scripts": {
     "commit": "jupiter-scripts precommit --allowJs",
