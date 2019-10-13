@@ -1,19 +1,26 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-type RequiredParams = {
+interface RequiredParams {
   id: number;
-};
+}
 
 type Item<ItemData> = ItemData & RequiredParams;
 
-export const useListDataManager = <ItemData>(defaultDataList: Item<ItemData>[] = []) => {
-  const [dataList, setListData] = useState<Item<ItemData>[]>(defaultDataList);
+export const useListDataManager = <ItemData>(
+  defaultDataList: Array<Item<ItemData>> = []
+) => {
+  const [dataList, setListData] = useState<Array<Item<ItemData>>>(
+    defaultDataList
+  );
 
   const addItem = (item: Item<ItemData>) => {
     setListData(state => [...state, item]);
   };
 
-  const updateItem = (dataToUpdate: Partial<Item<ItemData>>, itemToUpdateId: Item<ItemData>['id']) => {
+  const updateItem = (
+    dataToUpdate: Partial<Item<ItemData>>,
+    itemToUpdateId: Item<ItemData>["id"]
+  ) => {
     return setListData(
       dataList.map(itemData => {
         const { id: itemId } = itemData;
@@ -21,20 +28,20 @@ export const useListDataManager = <ItemData>(defaultDataList: Item<ItemData>[] =
         return itemId === itemToUpdateId
           ? {
               ...itemData,
-              ...dataToUpdate,
+              ...dataToUpdate
             }
           : itemData;
       })
     );
   };
 
-  const removeItem = (itemToDeleteId: Item<ItemData>['id']) =>
+  const removeItem = (itemToDeleteId: Item<ItemData>["id"]) =>
     setListData(dataList.filter(({ id: itemId }) => itemId !== itemToDeleteId));
 
   return {
     dataList,
     addItem,
     updateItem,
-    removeItem,
+    removeItem
   };
 };
