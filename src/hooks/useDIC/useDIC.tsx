@@ -12,7 +12,9 @@ type Params = Dependencies | DependenciesList;
 
 const Context = createContext<Dependencies | null>(null);
 
-type UseDIC = (params: Params) => { DICProvider: FC; dependencies: any };
+type UseDIC = (
+  params: Params
+) => { DICProvider: FC; dependencies: { [key: string]: any } };
 export const useDIC: UseDIC = dependencies => {
   const isInitialStep = typeof dependencies[0] === "object";
 
@@ -29,12 +31,18 @@ export const useDIC: UseDIC = dependencies => {
   }
 
   const dependenciesFromContext: Dependencies | null = useContext(Context);
-  let filteredResult = null;
+  let filteredResult = {};
 
   if (dependenciesFromContext && !isInitialStep) {
-    filteredResult = dependenciesFromContext.filter(({ name }) => {
-      return (dependencies as DependenciesList).includes(name);
-    });
+    filteredResult = dependenciesFromContext
+      .filter(({ name }) => {
+        return (dependencies as DependenciesList).includes(name);
+      })
+      .reduce<{ [key: string]: any }>((result, { name, dependency }) => {
+        result[name] = dependency;
+
+        return result;
+      }, {});
   }
 
   return {

@@ -9,7 +9,7 @@ describe("useDIC", () => {
     const SomeComponent = () => {
       const {
         DICProvider,
-        dependencies: [{ name }]
+        dependencies: { hello }
       } = useDIC(["hello"]);
 
       return (
@@ -17,7 +17,7 @@ describe("useDIC", () => {
           <DICProvider>
             <div data-testid="dicProvider" />
           </DICProvider>
-          <div data-testid={name}>Hello</div>;
+          <div data-testid={hello}>Hello</div>;
         </>
       );
     };
@@ -40,7 +40,7 @@ describe("useDIC", () => {
   it("pass dependencies properly", () => {
     const { getByTestId } = render(<TestComponent />);
 
-    const result = getByTestId("hello").textContent;
+    const result = getByTestId("some").textContent;
     const expected = "Hello";
 
     expect(result).toBe(expected);
