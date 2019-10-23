@@ -1,0 +1,1 @@
+export { useDIC } from "./useDIC";
