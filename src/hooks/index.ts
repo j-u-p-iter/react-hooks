@@ -5,3 +5,4 @@ export { useOnClickOutside } from "./useOnClickOutside";
 export { useLocalStorage } from "./useLocalStorage";
 export { useEventListener } from "./useEventListener";
 export { useDIC } from "./useDIC";
+export { useTranslatedComponent } from "./useTranslatedComponent";
