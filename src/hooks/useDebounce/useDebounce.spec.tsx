@@ -1,8 +1,8 @@
+import { fireEvent, render } from "@testing-library/react";
 import * as React from "react";
-import { fireEvent, render } from "react-testing-library";
 import waitForExpect from "wait-for-expect";
 
-import { useDebounce } from "./useDebounce";
+import { useDebounce } from ".";
 
 const { useState, useEffect } = React;
 

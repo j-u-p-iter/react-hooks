@@ -1,5 +1,5 @@
+import { cleanup, render } from "@testing-library/react";
 import * as React from "react";
-import { render } from "react-testing-library";
 
 import { useTranslatedComponent } from ".";
 
@@ -31,6 +31,8 @@ describe("useTranslatedComponent", () => {
       return render(<TestComponent />);
     };
   });
+
+  afterEach(cleanup);
 
   it("throws when there is no appropriate component", () => {
     const language = "fr";

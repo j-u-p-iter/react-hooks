@@ -1,0 +1,1 @@
+export { useOnIntersect } from "./useOnIntersect";

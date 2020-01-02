@@ -6,3 +6,5 @@ export { useLocalStorage } from "./useLocalStorage";
 export { useEventListener } from "./useEventListener";
 export { useDIC } from "./useDIC";
 export { useTranslatedComponent } from "./useTranslatedComponent";
+export * from "./useIntersectionObserver";
+export * from "./useOnIntersect";
