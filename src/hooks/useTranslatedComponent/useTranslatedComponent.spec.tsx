@@ -50,10 +50,14 @@ describe("useTranslatedComponent", () => {
     let result = (getByTestId("page") as HTMLElement).textContent;
     let expected = "PageRU";
 
+    expect(result).toBe(expected);
+
+    cleanup();
+
     ({ getByTestId } = renderComponent("en"));
 
     result = (getByTestId("page") as HTMLElement).textContent;
-    expected = "PageRU";
+    expected = "PageEN";
 
     expect(result).toBe(expected);
   });
